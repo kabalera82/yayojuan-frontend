@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: oklch(0.3 0.05 145);
+  color: oklch(0.92 0.01 145);
+}
+
+.foot_logos {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footlinks_link img {
+  width: 45px;
+  height: 45px;
+  opacity: 0.8;
+}
+
+.footlinks_link:hover img {
+  opacity: 1;
+}
+
+.footer .navlinks_link {
+  color: oklch(0.92 0.01 145);
+}
+
+.footer .navlinks_link:hover,
+.footer .navlinks_link.active {
+  color: oklch(0.8 0.12 145);
+}
