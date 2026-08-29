@@ -1,0 +1,13 @@
+.home {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.home h1 {
+  margin: 0 0 8px;
+}
+
+.home p {
+  color: var(--text);
+  margin: 4px 0;
+}

@@ -1,0 +1,12 @@
+.not-found {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.not-found h1 {
+  margin: 0 0 12px;
+}
+
+.not-found a {
+  color: var(--accent);
+}
