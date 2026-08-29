@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: color-mix(in oklch, var(--accent) 10%, var(--bg));
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__brand {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-h);
+  text-decoration: none;
+}
+
+.navbar__brand:hover {
+  color: var(--accent);
+}
