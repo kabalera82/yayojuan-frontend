@@ -12,6 +12,11 @@ y este proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - Scaffold inicial del frontend: Vite + React 19 + TypeScript, con ESLint, Prettier y
   `react-router-dom` instalado (sin rutas todavía).
 - Script `format` (`prettier --write .`) en `package.json`.
+- Enrutado básico con `react-router-dom`: `Home` y página 404 (`NotFound`).
+- Navbar con marca y enlaces de navegación (`NavLinks`, reutilizado también en el footer).
+- Footer con enlaces a redes sociales.
+- Color de acento (`--accent`) en `index.css`, aplicado al navbar, footer y estados
+  activo/hover de los enlaces.
 
 ### Fixed
 
