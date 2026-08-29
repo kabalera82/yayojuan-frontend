@@ -11,3 +11,10 @@ y este proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 
 - Scaffold inicial del frontend: Vite + React 19 + TypeScript, con ESLint, Prettier y
   `react-router-dom` instalado (sin rutas todavía).
+- Script `format` (`prettier --write .`) en `package.json`.
+
+### Fixed
+
+- Formateo con Prettier aplicado a los ficheros que no cumplían la configuración del
+  proyecto (`eslint.config.js`, `prettier.config.cjs`, `README.md`, `src/main.tsx`,
+  `tsconfig.json`, `vite.config.ts`).
