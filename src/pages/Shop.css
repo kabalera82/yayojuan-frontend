@@ -1,0 +1,48 @@
+.shop {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.shop h1 {
+  margin: 0 0 24px;
+  color: var(--text-h);
+}
+
+.shop__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.shop__filter {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.shop__filter:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.shop__filter--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.shop__message {
+  color: var(--accent);
+}
+
+.shop__grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
