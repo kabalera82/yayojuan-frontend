@@ -1,7 +1,8 @@
 import './Home.css';
 import heroImage from '../assets/images/hero_image.jpg';
 import {Button} from '../components/button/Button';
-import {ValueCard, type Value} from '../components/valuecard/ValueCard';
+import {ValueCard} from '../components/valuecard/ValueCard';
+import type {Value} from '../types/props';
 
 const values: Value[] = [
   {

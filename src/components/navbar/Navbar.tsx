@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom';
 import {NavLinks} from './navlinks/NavLinks';
 import {navItems} from './navlinks/navItems';
-import {useAccountNavItem} from './navlinks/useAccountNavItem';
+import {useAccountNavItem} from '../../hooks/useAccountNavItem';
 import {ThemeToggle} from '../theme/ThemeToggle';
 import './Navbar.css';
 

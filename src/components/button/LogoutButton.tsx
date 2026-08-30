@@ -1,4 +1,4 @@
-import {useAuth} from '../../context/AuthContext';
+import {useAuth} from '../../hooks/useAuth';
 import './Button.css';
 import '../forms/UserForm.css';
 

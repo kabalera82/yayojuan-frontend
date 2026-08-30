@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import type {SubmitEvent} from 'react';
 import './UserForm.css';
-import {useAuth} from '../../context/AuthContext';
+import {useAuth} from '../../hooks/useAuth';
 import {updatePassword} from '../../services/api';
 
 const UpdatePasswordForm = () => {

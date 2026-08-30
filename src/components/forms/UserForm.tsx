@@ -1,13 +1,9 @@
 import {useEffect, useState} from 'react';
 import type {SubmitEvent} from 'react';
 import './UserForm.css';
-import {useAuth} from '../../context/AuthContext';
+import {useAuth} from '../../hooks/useAuth';
 import {registerUser, updateUser, getMe} from '../../services/api';
-
-interface UserFormProps {
-  mode: 'register' | 'update';
-  onSuccess?: () => void;
-}
+import type {UserFormProps} from '../../types/props';
 
 const UserForm = ({mode, onSuccess}: UserFormProps) => {
   const {token, user, setUser} = useAuth();

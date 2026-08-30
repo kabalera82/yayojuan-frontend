@@ -1,10 +1,10 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import type {ReactNode} from 'react';
 import {getMe} from '../services/api';
 import type {User} from '../types/user';
 import type {AuthContextType} from '../types/auth';
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({children}: {children: ReactNode}) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
@@ -46,12 +46,4 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 };

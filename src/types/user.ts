@@ -7,12 +7,6 @@ export interface Address {
   isDefault: boolean;
 }
 
-export interface CartItem {
-  _id: string;
-  product: string;
-  quantity: number;
-}
-
 export interface User {
   _id: string;
   username: string;
@@ -21,7 +15,6 @@ export interface User {
   phone: string;
   addresses: Address[];
   role: 'customer' | 'admin';
-  cart: CartItem[];
   wishlist: string[];
 }
 
@@ -30,8 +23,6 @@ export interface LoginResponse {
   user: User;
 }
 
-// El backend siempre responde así cuando el cuerpo es solo un mensaje: tanto en
-// éxito (register, actualizar perfil, actualizar contraseña) como en error (400).
 export interface MessageResponse {
   message: string;
 }
@@ -40,9 +31,20 @@ export type RegisterResponse = MessageResponse;
 export type ErrorResponse = MessageResponse;
 export type UserResponse = User;
 
-// Para endpoints donde éxito y error tienen la misma forma ({message}) y la única
-// manera real de distinguirlos es el status HTTP (res.ok).
 export interface ActionResult {
   ok: boolean;
   message: string;
+}
+
+export interface RegisterPayload {
+  username: string;
+  userSurname: string;
+  email: string;
+  phone: string;
+  password: string;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
 }

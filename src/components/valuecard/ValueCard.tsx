@@ -1,13 +1,5 @@
-import type {ReactNode} from 'react';
+import type {ValueCardProps} from '../../types/props';
 import './ValueCard.css';
-
-export type Value = {
-  icon: ReactNode;
-  title: string;
-  description: string;
-};
-
-type ValueCardProps = Value;
 
 export const ValueCard = ({icon, title, description}: ValueCardProps) => (
   <article className="value-card">

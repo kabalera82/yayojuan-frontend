@@ -1,7 +1,7 @@
 import './Footer.css';
 import {NavLinks} from '../navbar/navlinks/NavLinks';
 import {navItems} from '../navbar/navlinks/navItems';
-import {useAccountNavItem} from '../navbar/navlinks/useAccountNavItem';
+import {useAccountNavItem} from '../../hooks/useAccountNavItem';
 import {footItems} from './footItems';
 
 const Footer = () => {

@@ -1,4 +1,4 @@
-import {useAuth} from '../context/AuthContext';
+import {useAuth} from '../hooks/useAuth';
 import Auth from './Auth';
 import UserForm from '../components/forms/UserForm';
 import UpdatePasswordForm from '../components/forms/UpdatePasswordForm';

@@ -6,7 +6,7 @@ import tiktokImg from '../../assets/images/tiktok.webp';
 import whatsappImg from '../../assets/images/whatsapp.webp';
 import youtubeImg from '../../assets/images/youtube.webp';
 
-export type FootItem = {
+type FootItem = {
   imgSrc: string;
   altText: string;
   href: string;

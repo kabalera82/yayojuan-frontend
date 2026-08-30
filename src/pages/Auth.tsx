@@ -2,7 +2,7 @@ import {useState} from 'react';
 import type {SubmitEvent} from 'react';
 import './Auth.css';
 import '../components/forms/UserForm.css';
-import {useAuth} from '../context/AuthContext';
+import {useAuth} from '../hooks/useAuth';
 import {loginUser} from '../services/api';
 
 const Auth = () => {

@@ -1,14 +1,15 @@
-import type {Category} from './category';
+// Categoria de producto
+export interface Category {
+  _id: string;
+  name: string;
+}
 
-// 1 = enero ... 12 = diciembre. Si startMonth > endMonth, la temporada cruza el fin de
-// año (p. ej. 10 a 2 = octubre-febrero).
+// Producto
 export interface Season {
   startMonth: number;
   endMonth: number;
 }
 
-// Forma en la que llega un producto desde la API (GET): category ya viene
-// poblada con el objeto completo, no solo su id.
 export interface Product {
   _id: string;
   name: string;
@@ -20,8 +21,6 @@ export interface Product {
   season?: Season;
 }
 
-// Forma para crear/actualizar un producto: category va como id (string),
-// que es lo que espera el backend en el cuerpo de la petición.
 export interface ProductInput {
   name: string;
   category: string;
