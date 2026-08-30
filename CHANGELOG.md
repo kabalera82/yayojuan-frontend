@@ -26,6 +26,21 @@ y este proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - Página de tienda (`/shop`) con catálogo de productos y filtro por categoría.
 - Página "Conócenos" (`/conocenos`) con formulario de contacto (guarda en el backend y
   avisa por Telegram) y mapa de localización.
+- Carrito de la compra (`useCart`, `Cart`) integrado en la tienda: añadir productos,
+  cambiar cantidades, eliminar líneas y solicitar el pedido, que se envía al backend y
+  avisa por Telegram. Requiere sesión iniciada.
+
+### Changed
+
+- Los hooks propios viven en `src/hooks/` y los tipos compartidos en `src/types/`. Los
+  tipos que usa un solo módulo se declaran junto a él.
+- `Category` se declara en `types/product.ts` y desaparece `types/category.ts`.
+- El carrito solo guarda el id y la cantidad en `localStorage`. Nombre, precio y stock
+  se leen siempre de la API, así que ya no se muestran precios obsoletos.
+
+### Removed
+
+- `CartItem` y el campo `cart` del tipo `User`: el backend ya no guarda el carrito.
 
 ### Fixed
 
