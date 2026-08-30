@@ -1,17 +1,21 @@
-import type {Product} from '../../types/product';
+import type {ProductCardProps} from '../../types/props';
 import './ProductCard.css';
 
-type ProductCardProps = {
-  product: Product;
-};
-
-export const ProductCard = ({product}: ProductCardProps) => (
+const ProductCard = ({product, onAddToCart}: ProductCardProps) => (
   <article className="product-card">
     <img className="product-card__image" src={product.image} alt={product.name} />
     <div className="product-card__body">
       <span className="product-card__category">{product.category.name}</span>
       <h3 className="product-card__name">{product.name}</h3>
+      <p className="product-card__description">{product.description}</p>
       <p className="product-card__price">{product.price.toFixed(2)} €</p>
     </div>
+    {onAddToCart && (
+      <button type="button" className="product-card__add" onClick={() => onAddToCart(product)}>
+        Agregar al carrito
+      </button>
+    )}
   </article>
 );
+
+export default ProductCard;

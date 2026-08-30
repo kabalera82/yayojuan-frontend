@@ -1,11 +1,15 @@
 import {useEffect, useState} from 'react';
 import './Shop.css';
 import {getProducts, getCategories} from '../services/api';
-import type {Product} from '../types/product';
-import type {Category} from '../types/category';
-import {ProductCard} from '../components/productcard/ProductCard';
+import type {Product, Category} from '../types/product';
+import ProductCard from '../components/productcard/ProductCard';
+import Cart from '../components/cart/Cart';
+import {useCart} from '../hooks/useCart';
 
 const Shop = () => {
+  const {cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart} =
+    useCart();
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -74,10 +78,21 @@ const Shop = () => {
       ) : (
         <div className="shop__grid">
           {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard key={product._id} product={product} onAddToCart={addToCart} />
           ))}
         </div>
       )}
+
+      <section className="shop__cart">
+        <h2>Tu carrito</h2>
+        <Cart
+          cart={cart}
+          removeFromCart={removeFromCart}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+          clearCart={clearCart}
+        />
+      </section>
     </section>
   );
 };

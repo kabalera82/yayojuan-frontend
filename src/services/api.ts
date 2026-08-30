@@ -3,24 +3,24 @@ import type {
   LoginResponse,
   RegisterResponse,
   ErrorResponse,
-  MessageResponse
+  MessageResponse,
+  RegisterPayload,
+  LoginPayload
 } from '../types/user';
-import type {Product} from '../types/product';
-import type {Category} from '../types/category';
+import type {Product, Category} from '../types/product';
+import type {Order} from '../types/order';
 
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
-export interface RegisterPayload {
-  username: string;
-  userSurname: string;
+interface ContactPayload {
+  name: string;
   email: string;
-  phone: string;
-  password: string;
+  message: string;
 }
 
-export interface LoginPayload {
-  email: string;
-  password: string;
+interface OrderRequestItem {
+  product: string;
+  quantity: number;
 }
 
 // Registro usuario
@@ -93,12 +93,6 @@ const updatePassword = async (
   return res.json();
 };
 
-export interface ContactPayload {
-  name: string;
-  email: string;
-  message: string;
-}
-
 // Envía un mensaje de contacto
 const sendContactMessage = async (payload: ContactPayload): Promise<MessageResponse> => {
   const res = await fetch(`${VITE_API_URL}/contact`, {
@@ -118,6 +112,22 @@ const getProducts = async (categoryId?: string): Promise<Product[] | ErrorRespon
   return res.json();
 };
 
+// Solicita un pedido con el contenido del carrito
+const requestOrder = async (
+  token: string,
+  items: OrderRequestItem[]
+): Promise<Order | ErrorResponse> => {
+  const res = await fetch(`${VITE_API_URL}/orders/request`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({items})
+  });
+  return res.json();
+};
+
 // Lista las categorías
 const getCategories = async (): Promise<Category[] | ErrorResponse> => {
   const res = await fetch(`${VITE_API_URL}/categories`);
@@ -132,5 +142,6 @@ export {
   updatePassword,
   sendContactMessage,
   getProducts,
-  getCategories
+  getCategories,
+  requestOrder
 };

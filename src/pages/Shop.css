@@ -46,3 +46,12 @@
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
+
+.shop__cart {
+  margin-top: 48px;
+}
+
+.shop__cart h2 {
+  margin: 0 0 16px;
+  color: var(--text-h);
+}
