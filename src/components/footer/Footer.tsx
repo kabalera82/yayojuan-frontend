@@ -1,9 +1,12 @@
 import './Footer.css';
 import {NavLinks} from '../navbar/navlinks/NavLinks';
 import {navItems} from '../navbar/navlinks/navItems';
+import {useAccountNavItem} from '../navbar/navlinks/useAccountNavItem';
 import {footItems} from './footItems';
 
 const Footer = () => {
+  const accountItem = useAccountNavItem();
+
   return (
     <footer className="footer">
       <ul className="foot_logos">
@@ -21,7 +24,7 @@ const Footer = () => {
         ))}
       </ul>
       <div className="foot_links">
-        <NavLinks items={navItems} />
+        <NavLinks items={[...navItems, accountItem]} />
       </div>
     </footer>
   );

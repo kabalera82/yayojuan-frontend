@@ -1,0 +1,44 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.user-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-h);
+}
+
+.user-form__field input,
+.user-form__field textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--bg);
+  color: var(--text-h);
+  resize: vertical;
+}
+
+.user-form__message {
+  margin: 0;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.user-form__submit {
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
