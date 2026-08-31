@@ -3,7 +3,13 @@ import type {SubmitEvent} from 'react';
 import './UserForm.css';
 import {useAuth} from '../../hooks/useAuth';
 import {registerUser, updateUser, getMe} from '../../services/api';
-import type {UserFormProps} from '../../types/props';
+import type {UserFormProps} from '../../types/user';
+import {Button} from '../button/Button';
+
+const TITULOS = {
+  register: 'Crear cuenta',
+  update: 'Guardar cambios'
+};
 
 const UserForm = ({mode, onSuccess}: UserFormProps) => {
   const {token, user, setUser} = useAuth();
@@ -74,7 +80,7 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
 
   return (
     <form className="user-form" onSubmit={handleSubmit}>
-      <h2>{mode === 'register' ? 'Crear cuenta' : 'Guardar cambios'}</h2>
+      <h2>{TITULOS[mode]}</h2>
 
       <label className="user-form__field">
         Nombre
@@ -126,9 +132,9 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
 
       {message && <p className="user-form__message">{message}</p>}
 
-      <button type="submit" className="user-form__submit" disabled={submitting}>
-        {mode === 'register' ? 'Crear cuenta' : 'Guardar cambios'}
-      </button>
+      <Button type="submit" block disabled={submitting}>
+        {TITULOS[mode]}
+      </Button>
     </form>
   );
 };

@@ -2,9 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
   max-width: 360px;
   margin: 0 auto;
   padding: 32px 24px;
+}
+
+.user-form h2 {
+  margin: 0;
+  color: var(--text-h);
 }
 
 .user-form__field {
@@ -17,13 +23,19 @@
 
 .user-form__field input,
 .user-form__field textarea {
+  min-height: 44px;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font: inherit;
-  background: var(--bg);
+  background: var(--surface);
   color: var(--text-h);
   resize: vertical;
+}
+
+.user-form__field input:focus,
+.user-form__field textarea:focus {
+  border-color: var(--accent);
 }
 
 .user-form__message {
@@ -32,13 +44,8 @@
   color: var(--accent);
 }
 
-.user-form__submit {
-  padding: 12px;
-  border: none;
-  border-radius: 999px;
-  background: var(--accent);
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
+@media (max-width: 640px) {
+  .user-form {
+    padding: 24px 16px;
+  }
 }

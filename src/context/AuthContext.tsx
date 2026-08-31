@@ -2,7 +2,7 @@ import {createContext, useEffect, useState} from 'react';
 import type {ReactNode} from 'react';
 import {getMe} from '../services/api';
 import type {User} from '../types/user';
-import type {AuthContextType} from '../types/auth';
+import type {AuthContextType} from './auth';
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
