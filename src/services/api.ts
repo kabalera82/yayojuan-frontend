@@ -212,40 +212,63 @@ const deleteProduct = async (token: string, id: string): Promise<MessageResponse
   return res.json();
 };
 
-const exportProducts = async (token: string): Promise<MessageResponse> => {
+const descargar = (blob: Blob, nombre: string) => {
+  const url = URL.createObjectURL(blob);
+  const enlace = document.createElement('a');
+  enlace.href = url;
+  enlace.download = nombre;
+  enlace.click();
+  URL.revokeObjectURL(url);
+};
+
+const exportProducts = async (token: string): Promise<MessageResponse | null> => {
   const res = await fetch(`${VITE_API_URL}/products/export`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
   });
-  return res.json();
+
+  if (!res.ok) {
+    return res.json();
+  }
+
+  descargar(await res.blob(), 'productos.csv');
+  return null;
 };
 
-const importProducts = async (token: string): Promise<MessageResponse> => {
+const importProducts = async (token: string, datos: FormData): Promise<MessageResponse> => {
   const res = await fetch(`${VITE_API_URL}/products/import`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`
-    }
+    },
+    body: datos
   });
   return res.json();
 };
 
-const exportOrders = async (token: string): Promise<MessageResponse> => {
+const exportOrders = async (token: string): Promise<MessageResponse | null> => {
   const res = await fetch(`${VITE_API_URL}/orders/export`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
   });
-  return res.json();
+
+  if (!res.ok) {
+    return res.json();
+  }
+
+  descargar(await res.blob(), 'pedidos.csv');
+  return null;
 };
 
-const importOrders = async (token: string): Promise<MessageResponse> => {
+const importOrders = async (token: string, datos: FormData): Promise<MessageResponse> => {
   const res = await fetch(`${VITE_API_URL}/orders/import`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`
-    }
+    },
+    body: datos
   });
   return res.json();
 };

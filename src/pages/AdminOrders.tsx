@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
+import type {ChangeEvent} from 'react';
 import {useAuth} from '../hooks/useAuth';
 import {
   getOrders,
@@ -24,6 +25,7 @@ const AdminOrders = () => {
   const [editando, setEditando] = useState<Order | null>(null);
   const [message, setMessage] = useState('');
   const [recargar, setRecargar] = useState(0);
+  const importInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!token) return;
@@ -58,13 +60,18 @@ const AdminOrders = () => {
     if (!token) return;
 
     const result = await exportOrders(token);
-    setMessage(result.message);
+    if (result) setMessage(result.message);
   };
 
-  const handleImport = async () => {
-    if (!token) return;
+  const handleImportFile = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file || !token) return;
 
-    const result = await importOrders(token);
+    const datos = new FormData();
+    datos.append('file', file);
+
+    const result = await importOrders(token, datos);
     setMessage(result.message);
     setRecargar(recargar + 1);
   };
@@ -160,7 +167,14 @@ const AdminOrders = () => {
             <Button variant="secondary" size="sm" onClick={handleExport}>
               Exportar CSV
             </Button>
-            <Button variant="secondary" size="sm" onClick={handleImport}>
+            <input
+              type="file"
+              accept=".csv"
+              ref={importInputRef}
+              onChange={handleImportFile}
+              hidden
+            />
+            <Button variant="secondary" size="sm" onClick={() => importInputRef.current?.click()}>
               Importar CSV
             </Button>
           </div>
