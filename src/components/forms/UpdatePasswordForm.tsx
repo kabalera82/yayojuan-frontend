@@ -3,6 +3,7 @@ import type {SubmitEvent} from 'react';
 import './UserForm.css';
 import {useAuth} from '../../hooks/useAuth';
 import {updatePassword} from '../../services/api';
+import {Button} from '../button/Button';
 
 const UpdatePasswordForm = () => {
   const {token} = useAuth();
@@ -54,9 +55,9 @@ const UpdatePasswordForm = () => {
 
       {message && <p className="user-form__message">{message}</p>}
 
-      <button type="submit" className="user-form__submit" disabled={submitting}>
+      <Button type="submit" block disabled={submitting}>
         Actualizar contraseña
-      </button>
+      </Button>
     </form>
   );
 };

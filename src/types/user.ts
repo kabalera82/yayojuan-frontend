@@ -10,7 +10,7 @@ export interface User {
 }
 
 export interface UserFormProps {
-  mode: 'register' | 'update';
+  mode: 'register' | 'update' | 'create';
   onSuccess?: () => void;
 }
 
@@ -21,6 +21,11 @@ export interface Address {
   postalCode: string;
   country: string;
   isDefault: boolean;
+}
+
+export interface AddressResponse {
+  message: string;
+  addresses?: Address[];
 }
 
 export interface LoginResponse {

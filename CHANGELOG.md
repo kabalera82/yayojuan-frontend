@@ -34,6 +34,16 @@ y este proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - Menú de navegación plegable en móvil (`Navbar`).
 - Utilidades compartidas en `index.css`: `.container`, `.surface`, `.table`,
   `.scroll-x`, y estilos para `select`.
+- Gestión de la dirección de envío desde la página de cuenta (`AddressForm`), con
+  alta y edición.
+- Panel de administración (`/admin`), visible solo para usuarios con rol `admin`, con
+  tres secciones:
+  - `/admin/productos`: alta y edición de productos (con imagen), listado con
+    tarjetas, exportar e importar CSV.
+  - `/admin/usuarios`: alta de usuarios con rol, listado con eliminar.
+  - `/admin/pedidos`: listado de pedidos con edición de líneas y cambio de estado,
+    exportar e importar CSV.
+- Enlace "Administración" en el nav, visible solo para usuarios con rol `admin`.
 
 ### Changed
 
@@ -53,6 +63,10 @@ y este proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - El carrito, el navbar, el footer, la home, la tienda y la página de contacto
   reducen su altura y separación para caber sin scroll en pantallas de escritorio
   habituales, y el carrito pasa a lista compacta en móvil.
+- El formulario de login se extrae a `LoginForm` (antes página `Auth`) y vive junto a
+  los demás formularios en `components/forms/`.
+- `UserForm` admite un tercer modo, `create`, usado por el panel de administración
+  para dar de alta usuarios con rol.
 
 ### Removed
 
@@ -71,3 +85,5 @@ y este proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
   que rompía la compilación.
 - El tipo de `token` no admitía `null`, aunque `localStorage.getItem` puede devolverlo.
 - `ProtectedRoute` redirigía a `/login`, una ruta que no existe.
+- `Order.user` puede ser `null` si el usuario del pedido fue eliminado; el listado de
+  pedidos ya no rompe al mostrarlo.

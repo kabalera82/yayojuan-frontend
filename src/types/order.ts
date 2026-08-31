@@ -17,7 +17,7 @@ export type OrderStatus = 'pendiente' | 'procesando' | 'enviado' | 'entregado' |
 
 export interface Order {
   _id: string;
-  user: string | {_id: string; username: string; email: string};
+  user: string | {_id: string; username: string; email: string} | null;
   items: OrderItem[];
   shippingAddress: ShippingAddress;
   totalPrice: number;

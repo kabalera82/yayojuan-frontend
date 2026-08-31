@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import type {SubmitEvent} from 'react';
-import './Auth.css';
-import '../components/forms/UserForm.css';
-import {useAuth} from '../hooks/useAuth';
-import {loginUser} from '../services/api';
+import './UserForm.css';
+import {useAuth} from '../../hooks/useAuth';
+import {loginUser} from '../../services/api';
+import {Button} from '../button/Button';
 
-const Auth = () => {
+const LoginForm = () => {
   const {login} = useAuth();
 
   const [email, setEmail] = useState('');
@@ -60,11 +60,11 @@ const Auth = () => {
 
       {message && <p className="user-form__message">{message}</p>}
 
-      <button type="submit" className="user-form__submit" disabled={submitting}>
+      <Button type="submit" block disabled={submitting}>
         Entrar
-      </button>
+      </Button>
     </form>
   );
 };
 
-export default Auth;
+export default LoginForm;
