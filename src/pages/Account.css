@@ -1,0 +1,26 @@
+.account {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0 24px;
+  align-items: start;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.account .user-form {
+  max-width: none;
+  padding: 16px 0;
+}
+
+.account__logout {
+  padding: 0 0 16px;
+}
+
+@media (max-width: 640px) {
+  .account {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

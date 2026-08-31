@@ -1,0 +1,102 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 12px 28px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button--primary {
+  background: var(--accent);
+  color: white;
+}
+
+.button--primary:hover:not(:disabled) {
+  background: color-mix(in oklch, var(--accent) 85%, black);
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--text-h);
+  border-color: var(--border);
+}
+
+.button--secondary:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button--ghost {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--border);
+  font-weight: 500;
+}
+
+.button--ghost:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button--ghost.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.button--danger {
+  background: color-mix(in oklch, var(--danger) 12%, transparent);
+  color: var(--danger);
+  border-color: color-mix(in oklch, var(--danger) 50%, transparent);
+}
+
+.button--danger:hover:not(:disabled) {
+  background: var(--danger);
+  color: white;
+}
+
+.button--sm {
+  min-height: 38px;
+  padding: 8px 18px;
+  font-size: 14px;
+}
+
+.button--icon {
+  min-width: 44px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.button--block {
+  display: flex;
+  width: 100%;
+}
+
+@media (pointer: coarse) {
+  .button--sm {
+    min-height: 44px;
+  }
+}

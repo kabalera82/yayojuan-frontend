@@ -1,0 +1,65 @@
+import {useState} from 'react';
+import type {SubmitEvent} from 'react';
+import './UserForm.css';
+import {useAuth} from '../../hooks/useAuth';
+import {updatePassword} from '../../services/api';
+import {Button} from '../button/Button';
+
+const UpdatePasswordForm = () => {
+  const {token} = useAuth();
+
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!token) return;
+
+    setSubmitting(true);
+    setMessage('');
+
+    const result = await updatePassword(token, currentPassword, newPassword);
+
+    setSubmitting(false);
+    setMessage(result.message);
+    setCurrentPassword('');
+    setNewPassword('');
+  };
+
+  return (
+    <form className="user-form" onSubmit={handleSubmit}>
+      <h2>Cambiar contraseña</h2>
+
+      <label className="user-form__field">
+        Contraseña actual
+        <input
+          type="password"
+          value={currentPassword}
+          onChange={(event) => setCurrentPassword(event.target.value)}
+          required
+        />
+      </label>
+
+      <label className="user-form__field">
+        Contraseña nueva
+        <input
+          type="password"
+          value={newPassword}
+          onChange={(event) => setNewPassword(event.target.value)}
+          required
+          minLength={6}
+        />
+      </label>
+
+      {message && <p className="user-form__message">{message}</p>}
+
+      <Button type="submit" block disabled={submitting}>
+        Actualizar contraseña
+      </Button>
+    </form>
+  );
+};
+
+export default UpdatePasswordForm;

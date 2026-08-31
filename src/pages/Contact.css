@@ -1,0 +1,42 @@
+.contact__hero {
+  display: block;
+  width: 100%;
+  height: 28svh;
+  object-fit: cover;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.contact__grid .user-form {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact__map {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 720px) {
+  .contact__hero {
+    height: 32svh;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .contact__map {
+    min-height: 280px;
+  }
+}
