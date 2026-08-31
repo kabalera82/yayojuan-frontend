@@ -4,8 +4,6 @@ import type {Product} from '../types/product';
 
 export type CartProduct = Product & {quantity: number};
 
-// En el navegador solo guardamos qué producto y cuánto.
-// Nombre, precio y stock son del servidor y se piden a la API.
 type CartLine = {_id: string; quantity: number};
 
 const STORAGE_KEY = 'cart';
@@ -45,7 +43,6 @@ export const useCart = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
   }, [lines]);
 
-  // Lo que se ve se resuelve contra los productos recién traídos, nunca contra una copia guardada
   const cart = useMemo(
     () =>
       lines.flatMap((line) => {

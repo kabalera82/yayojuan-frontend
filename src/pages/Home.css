@@ -1,10 +1,8 @@
-/* Hero */
-
 .hero {
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: 70svh;
+  min-height: 40svh;
   overflow: hidden;
 }
 
@@ -24,7 +22,7 @@
 
 .hero__content {
   position: relative;
-  padding: 48px 24px;
+  padding: 28px 24px;
   max-width: 640px;
   color: white;
 }
@@ -57,10 +55,8 @@
   color: white;
 }
 
-/* Valores */
-
 .values {
-  padding: 64px 24px;
+  padding: 36px 24px;
   background: var(--bg-alt);
 }
 
@@ -72,10 +68,8 @@
   margin: 0 auto;
 }
 
-/* CTA */
-
 .cta {
-  padding: 64px 24px;
+  padding: 36px 24px;
   text-align: center;
 }
 
@@ -88,4 +82,19 @@
 .cta p {
   margin: 0 0 24px;
   color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .hero__content {
+    padding: 32px 16px;
+  }
+
+  .hero__actions .button {
+    flex: 1 1 140px;
+  }
+
+  .values,
+  .cta {
+    padding: 48px 16px;
+  }
 }

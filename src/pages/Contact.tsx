@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import type {SubmitEvent} from 'react';
-import './Conocenos.css';
+import './Contact.css';
 import '../components/forms/UserForm.css';
 import heroImage from '../assets/images/hero_image.jpg';
 import {sendContactMessage} from '../services/api';
+import {Button} from '../components/button/Button';
 
 const LATITUDE = Number(import.meta.env.VITE_MAP_LATITUDE);
 const LONGITUDE = Number(import.meta.env.VITE_MAP_LONGITUDE);
@@ -12,7 +13,7 @@ const MAP_SRC =
   `https://www.openstreetmap.org/export/embed.html?bbox=${LONGITUDE - MAP_DELTA}%2C${LATITUDE - MAP_DELTA}%2C${LONGITUDE + MAP_DELTA}%2C${LATITUDE + MAP_DELTA}` +
   `&layer=mapnik&marker=${LATITUDE}%2C${LONGITUDE}`;
 
-const Conocenos = () => {
+const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -40,9 +41,9 @@ const Conocenos = () => {
 
   return (
     <>
-      <img className="conocenos__hero" src={heroImage} alt="El Yayo Juan recogiendo la cosecha" />
+      <img className="contact__hero" src={heroImage} alt="El Yayo Juan recogiendo la cosecha" />
 
-      <section className="conocenos__grid">
+      <section className="contact__grid container">
         <form className="user-form" onSubmit={handleSubmit}>
           <h2>Contacta con nosotros</h2>
 
@@ -73,13 +74,13 @@ const Conocenos = () => {
 
           {feedback && <p className="user-form__message">{feedback}</p>}
 
-          <button type="submit" className="user-form__submit" disabled={submitting}>
+          <Button type="submit" block disabled={submitting}>
             Enviar
-          </button>
+          </Button>
         </form>
 
         <iframe
-          className="conocenos__map"
+          className="contact__map"
           title="Ubicación de La huerta del Yayo Juan"
           src={MAP_SRC}
           loading="lazy"
@@ -89,4 +90,4 @@ const Conocenos = () => {
   );
 };
 
-export default Conocenos;
+export default Contact;

@@ -2,8 +2,15 @@ import {useEffect, useState} from 'react';
 import type {SubmitEvent} from 'react';
 import './UserForm.css';
 import {useAuth} from '../../hooks/useAuth';
-import {registerUser, updateUser, getMe} from '../../services/api';
-import type {UserFormProps} from '../../types/props';
+import {registerUser, updateUser, createUser, getMe} from '../../services/api';
+import type {UserFormProps} from '../../types/user';
+import {Button} from '../button/Button';
+
+const TITULOS = {
+  register: 'Crear cuenta',
+  update: 'Guardar cambios',
+  create: 'Nuevo usuario'
+};
 
 const UserForm = ({mode, onSuccess}: UserFormProps) => {
   const {token, user, setUser} = useAuth();
@@ -13,6 +20,7 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('customer');
 
   const [message, setMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -53,10 +61,15 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
     setMessage('');
 
     try {
-      const result =
-        mode === 'register'
-          ? await registerUser({username, userSurname, email, phone, password})
-          : await updateUser(token!, username, userSurname, email, phone);
+      let result;
+
+      if (mode === 'update') {
+        result = await updateUser(token!, username, userSurname, email, phone);
+      } else if (mode === 'create') {
+        result = await createUser(token!, {username, userSurname, email, phone, password, role});
+      } else {
+        result = await registerUser({username, userSurname, email, phone, password});
+      }
 
       setMessage(result.message);
 
@@ -74,7 +87,7 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
 
   return (
     <form className="user-form" onSubmit={handleSubmit}>
-      <h2>{mode === 'register' ? 'Crear cuenta' : 'Guardar cambios'}</h2>
+      <h2>{TITULOS[mode]}</h2>
 
       <label className="user-form__field">
         Nombre
@@ -110,7 +123,17 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
         <input value={phone} onChange={(event) => setPhone(event.target.value)} required />
       </label>
 
-      {mode === 'register' && (
+      {mode === 'create' && (
+        <label className="user-form__field">
+          Rol
+          <select value={role} onChange={(event) => setRole(event.target.value)}>
+            <option value="customer">Cliente</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </label>
+      )}
+
+      {mode !== 'update' && (
         <label className="user-form__field">
           Contraseña
           <input
@@ -126,9 +149,9 @@ const UserForm = ({mode, onSuccess}: UserFormProps) => {
 
       {message && <p className="user-form__message">{message}</p>}
 
-      <button type="submit" className="user-form__submit" disabled={submitting}>
-        {mode === 'register' ? 'Crear cuenta' : 'Guardar cambios'}
-      </button>
+      <Button type="submit" block disabled={submitting}>
+        {TITULOS[mode]}
+      </Button>
     </form>
   );
 };

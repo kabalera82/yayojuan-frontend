@@ -2,8 +2,9 @@ import {useEffect, useState} from 'react';
 import './Shop.css';
 import {getProducts, getCategories} from '../services/api';
 import type {Product, Category} from '../types/product';
-import ProductCard from '../components/productcard/ProductCard';
+import {Card} from '../components/card/Card';
 import Cart from '../components/cart/Cart';
+import {Button} from '../components/button/Button';
 import {useCart} from '../hooks/useCart';
 
 const Shop = () => {
@@ -46,53 +47,66 @@ const Shop = () => {
   }, [selectedCategory]);
 
   return (
-    <section className="shop">
+    <section className="shop container">
       <h1>Tienda</h1>
 
       <div className="shop__filters">
-        <button
-          type="button"
-          className={`shop__filter ${selectedCategory === '' ? 'shop__filter--active' : ''}`}
+        <Button
+          variant="ghost"
+          size="sm"
+          active={selectedCategory === ''}
           onClick={() => setSelectedCategory('')}
         >
           Todas
-        </button>
+        </Button>
         {categories.map((category) => (
-          <button
+          <Button
             key={category._id}
-            type="button"
-            className={`shop__filter ${
-              selectedCategory === category._id ? 'shop__filter--active' : ''
-            }`}
+            variant="ghost"
+            size="sm"
+            active={selectedCategory === category._id}
             onClick={() => setSelectedCategory(category._id)}
           >
             {category.name}
-          </button>
+          </Button>
         ))}
       </div>
 
       {message && <p className="shop__message">{message}</p>}
 
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
-        <div className="shop__grid">
-          {products.map((product) => (
-            <ProductCard key={product._id} product={product} onAddToCart={addToCart} />
-          ))}
+      <div className="shop__layout">
+        <div className="shop__catalog">
+          {loading ? (
+            <p>Cargando...</p>
+          ) : (
+            <div className="shop__grid">
+              {products.map((product) => (
+                <Card
+                  key={product._id}
+                  variant="product"
+                  image={product.image}
+                  category={product.category.name}
+                  title={product.name}
+                  description={product.description}
+                  price={product.price}
+                  onAdd={() => addToCart(product)}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
 
-      <section className="shop__cart">
-        <h2>Tu carrito</h2>
-        <Cart
-          cart={cart}
-          removeFromCart={removeFromCart}
-          increaseQuantity={increaseQuantity}
-          decreaseQuantity={decreaseQuantity}
-          clearCart={clearCart}
-        />
-      </section>
+        <aside className="shop__cart">
+          <h2>Tu carrito</h2>
+          <Cart
+            cart={cart}
+            removeFromCart={removeFromCart}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
+            clearCart={clearCart}
+          />
+        </aside>
+      </div>
     </section>
   );
 };

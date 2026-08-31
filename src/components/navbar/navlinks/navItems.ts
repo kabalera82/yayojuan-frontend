@@ -5,6 +5,11 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   {label: 'Inicio', href: '/'},
-  {label: 'Conocenos', href: '/conocenos'},
+  {label: 'Conócenos', href: '/contact'},
   {label: 'Tienda', href: '/shop'}
 ];
+
+export type NavLinksProps = {
+  items: NavItem[];
+  onLinkClick?: () => void;
+};

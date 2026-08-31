@@ -1,5 +1,6 @@
 .navlinks_list {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   list-style: none;
   margin: 0;
@@ -7,6 +8,9 @@
 }
 
 .navlinks_link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--text);
   text-decoration: none;
   font-size: 15px;
@@ -15,4 +19,17 @@
 .navlinks_link:hover,
 .navlinks_link.active {
   color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .navbar__menu .navlinks_list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .navbar__menu .navlinks_link {
+    width: 100%;
+    padding: 4px 0;
+    border-top: 1px solid var(--border);
+  }
 }

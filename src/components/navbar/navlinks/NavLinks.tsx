@@ -1,6 +1,11 @@
 import {NavLink} from 'react-router-dom';
-import type {NavLinksProps} from '../../../types/props';
+import type {NavItem} from './navItems';
 import './NavLinks.css';
+
+type NavLinksProps = {
+  items: NavItem[];
+  onLinkClick?: () => void;
+};
 
 export const NavLinks = ({items, onLinkClick}: NavLinksProps) => (
   <ul className="navlinks_list">

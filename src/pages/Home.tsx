@@ -1,68 +1,27 @@
 import './Home.css';
+import artesanal from '../assets/images/artesanal.webp';
+import delatierra from '../assets/images/delatierra.webp';
 import heroImage from '../assets/images/hero_image.jpg';
+import cercania from '../assets/images/cercania.webp';
 import {Button} from '../components/button/Button';
-import {ValueCard} from '../components/valuecard/ValueCard';
-import type {Value} from '../types/props';
+import {Card} from '../components/card/Card';
 
-const values: Value[] = [
+const values = [
   {
+    image: cercania,
     title: 'Cultivo de cercanía',
     description:
-      'Verduras y hortalizas cultivadas en nuestra huerta de Navarra, sin viajes largos ni intermediarios.',
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 21c8 0 14-6 14-14V5h-2C9 5 5 11 5 19v2Z" />
-        <path d="M5 21c3-5 6-8 11-11" />
-      </svg>
-    )
+      'Verduras y hortalizas cultivadas en nuestra huerta de Navarra, sin viajes largos ni intermediarios.'
   },
   {
+    image: delatierra,
     title: 'De la tierra a tu mesa',
-    description: 'Recogemos cada pedido en su punto justo de maduración, listo para comer.',
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4 10h16l-1.5 9a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 10Z" />
-        <path d="M8 10 9 5" />
-        <path d="M16 10l-1-5" />
-        <path d="M9 14v3M12 14v3M15 14v3" />
-      </svg>
-    )
+    description: 'Recogemos cada pedido en su punto justo de maduración, listo para comer.'
   },
   {
+    image: artesanal,
     title: 'Cuidado artesanal',
-    description: 'Cultivamos con el mismo cariño de siempre, sin prisas y sin químicos de más.',
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 20s-7-4.35-9.5-8.5C.8 8 2 4.5 5.5 4a4.7 4.7 0 0 1 6.5 2 4.7 4.7 0 0 1 6.5-2c3.5.5 4.7 4 3 7.5C19 15.65 12 20 12 20Z" />
-      </svg>
-    )
+    description: 'Cultivamos con el mismo cariño de siempre, sin prisas y sin químicos de más.'
   }
 ];
 
@@ -87,7 +46,7 @@ const Home = () => {
       <section className="values">
         <div className="values__grid">
           {values.map((value) => (
-            <ValueCard key={value.title} {...value} />
+            <Card key={value.title} {...value} />
           ))}
         </div>
       </section>
