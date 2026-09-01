@@ -46,6 +46,13 @@ Y ya tienes la web corriendo en local, recargándose sola cada vez que guardas u
 - **Mi cuenta** — registro, inicio de sesión, editar perfil, cambiar contraseña.
 - **Contacto** — un formulario y un mapa de dónde está la huerta.
 - **Tema claro/oscuro** — se recuerda entre visitas.
+- **Administración** — solo para el rol `admin`: alta y edición de productos con
+  imagen, usuarios, y gestión de pedidos, con exportar/importar en CSV.
+
+## 🌍 En producción
+
+- **Web:** [yayojuan-frontend.vercel.app](https://yayojuan-frontend.vercel.app)
+- **API:** [yayojuan-backend.vercel.app](https://yayojuan-backend.vercel.app) — [su README está aquí](../backend/README.md)
 
 ## 📚 Si necesitas saber más
 
